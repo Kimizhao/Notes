@@ -1,6 +1,6 @@
 超文本标记语言（英语：HyperText Markup Language，简称：HTML）是一种用于创建网页的标准标记语言。
 
-## 简介
+## [简介](https://www.runoob.com/html/html-intro.html)
 
 ```html
 <!DOCTYPE html>
