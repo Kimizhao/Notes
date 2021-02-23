@@ -7,3 +7,5 @@
 [免费的 Python 英文书籍](https://www.pythonkitchen.com/legally-free-python-books-list/)
 
 本文整理了一张免费书籍清单，都是网上合法的 Python 学习资源，书目相当多。
+
+[9 本免费的 Python 语言编程书籍](https://linuxtoy.org/archives/9-free-python-books.html)
