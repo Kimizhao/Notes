@@ -11,15 +11,15 @@
 
 
 ```shell
-zzh@ubuntu-Shangqi-N720:~/apache-hadoop/hadoop-3.2.2/hadoop-3.2.2$ sbin/start-dfs.sh
+$ sbin/start-dfs.sh
 Starting namenodes on [localhost]
 localhost: Permission denied (publickey,password).
 Starting datanodes
 localhost: Permission denied (publickey,password).
 Starting secondary namenodes [ubuntu-Shangqi-N720]
 ubuntu-Shangqi-N720: Permission denied (publickey,password).
-zzh@ubuntu-Shangqi-N720:~/apache-hadoop/hadoop-3.2.2/hadoop-3.2.2$
-zzh@ubuntu-Shangqi-N720:~/apache-hadoop/hadoop-3.2.2/hadoop-3.2.2$ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+$
+$ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 Generating public/private rsa key pair.
 /home/zzh/.ssh/id_rsa already exists.
 Overwrite (y/n)? yes
@@ -39,13 +39,10 @@ The key's randomart image is:
 | + .   .oo=. . o |
 |. E..  .+=...   .|
 +----[SHA256]-----+
-zzh@ubuntu-Shangqi-N720:~/apache-hadoop/hadoop-3.2.2/hadoop-3.2.2$
-zzh@ubuntu-Shangqi-N720:~/apache-hadoop/hadoop-3.2.2/hadoop-3.2.2$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-zzh@ubuntu-Shangqi-N720:~/apache-hadoop/hadoop-3.2.2/hadoop-3.2.2$ chmod 0600 ~/.ssh/authorized_keys
-zzh@ubuntu-Shangqi-N720:~/apache-hadoop/hadoop-3.2.2/hadoop-3.2.2$
-zzh@ubuntu-Shangqi-N720:~/apache-hadoop/hadoop-3.2.2/hadoop-3.2.2$
-zzh@ubuntu-Shangqi-N720:~/apache-hadoop/hadoop-3.2.2/hadoop-3.2.2$
-zzh@ubuntu-Shangqi-N720:~/apache-hadoop/hadoop-3.2.2/hadoop-3.2.2$ sbin/start-dfs.sh
+$
+$ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+$ chmod 0600 ~/.ssh/authorized_keys
+$ sbin/start-dfs.sh
 ```
 
 
