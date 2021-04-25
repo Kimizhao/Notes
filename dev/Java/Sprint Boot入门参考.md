@@ -29,3 +29,13 @@
 Spring Boot 教程、技术栈示例代码，快速简单上手教程。
 
 https://github.com/ityouknow/spring-boot-examples
+
+
+
+
+
+文章：
+
+1.[从.Net到Java学习第二篇——IDEA and start spring boot](https://www.cnblogs.com/jiekzou/p/9202247.html)
+
+2.[Spring Cloud 微服务架构学习笔记与示例](https://www.cnblogs.com/edisonchou/p/java_spring_cloud_foundation_sample_list.html)
