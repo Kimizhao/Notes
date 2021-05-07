@@ -10,6 +10,70 @@
 
 
 
+**配置**
+
+etc/hadoop/core-site.xml:
+
+```
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://localhost:9000</value>
+    </property>
+</configuration>
+```
+
+
+
+etc/hadoop/hdfs-site.xml:
+
+```
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+</configuration>
+```
+
+
+
+如果没有配置namenode和datanode，每次重启都需要格式化。
+
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>/home/zzh/apache-hadoop/hadoop-3.2.2/data/name</value>
+        <description>为了保证元数据的安全一般配置多个不同目录</description>
+    </property>
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>/home/zzh/apache-hadoop/hadoop-3.2.2/data/data</value>
+        <description>datanode 的数据存储目录</description>
+    </property>
+
+
+**设置免密**
+
+```
+ $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+ $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+ $ chmod 0600 ~/.ssh/authorized_keys
+```
+
+
+
+**运行**
+
+1.格式化
+
+```
+bin/hdfs namenode -format
+```
+
+
+
+2.启动
+
 ```shell
 $ sbin/start-dfs.sh
 Starting namenodes on [localhost]

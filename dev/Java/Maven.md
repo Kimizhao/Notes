@@ -48,3 +48,14 @@ http://www.xiegangd.com/article/153440229013286
 </mirror>
 ```
 
+可以在以下路径查找到 settings.xml 文件
+
+(用户家目录)/.m2/settings.xml
+
+(maven安装目录)/conf/settings.xml，
+
+如果是 Mac 系统通过 brew 命令安装的，在这里：
+
+/usr/local/Cellar/maven/(版本号)/libexec/conf/settings.xml
+
+如果以上两个位置同时存在 settings.xml 文件，用户家目录的配置文件权重更高

@@ -333,11 +333,180 @@ drwx--x--x   - zzh supergroup          0 2021-04-06 20:57 /hbase/staging
 
 
 
+##### 2.4 [集群部署](http://hbase.apache.org/book.html#quickstart_fully_distributed)
+
+**规划**
+
+| Node Name 节点名称 | Master 师父 | ZooKeeper 动物园管理员 | RegionServer |
+| :----------------- | :---------- | :--------------------- | :----------- |
+| node-a.example.com | yes是的     | yes是的                | no没有       |
+| node-b.example.com | backup支援  | yes是的                | yes是的      |
+| node-c.example.com | no没有      | yes是的                | yes是的      |
+
+
+
+1. 准备各主机间免密登陆
+
+***准备* 主机hadoop1**
+
+主机hadoop1将运行主主服务器和 ZooKeeper 进程，但不运行 RegionServers。
+
+1.编辑 conf/regionservers 并删除包含 localhost 的行。为 hadoop2 和 hadoop3 添加具有主机名或 IP 地址的行。
+
+2.将 HBase 配置为使用 hadoop2 作为备份主机。
+
+在 conf/called backup-masters 中创建一个新文件，并添加一个新行，其中包含 hadoop2  的主机名。
+
+3.配置ZooKeeper
+
+实际上，你应该仔细考虑你的 ZooKeeper 配置。你可以在动物园管理员部分找到更多关于配置 ZooKeeper 的信息。此配置将指示 HBase 启动并管理集群中每个节点上的 ZooKeeper 实例。
+
+在 hadoop1 上编辑 conf/hbase-site.xml 并添加以下属性。
+
+```
+  <property>
+    <name>hbase.cluster.distributed</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>hbase.rootdir</name>
+    <value>hdfs://hadoop1:9000/hbase</value>
+  </property>
+  <!--
+  <property>
+    <name>hbase.tmp.dir</name>
+    <value>./tmp</value>
+  </property>
+  <property>
+    <name>hbase.unsafe.stream.capability.enforce</name>
+    <value>false</value>
+  </property>
+  -->
+  <property>
+    <name>hbase.zookeeper.quorum</name>
+    <value>hadoop1,hadoop2,hadoop3</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.property.dataDir</name>
+    <value>/home/hadoop/data/zookeeper</value>
+  </property>
+```
+
+
+
+4.配置连接独立的ZooKeeper
+
+conf/hbase-env.sh
+
+```
+# Tell HBase whether it should manage it's own instance of ZooKeeper or not.
+export HBASE_MANAGES_ZK=true
+```
+
+
+
+***过程：准备hadoop2、hadoop3***
+
+拷贝包到另外2台，三台集群主机使用同样配置，目录也需要一致。
+
+```
+scp -r hbase-2.4.2 hadoop@hadoop2:~/apps
+scp -r hbase-2.4.2 hadoop@hadoop3:~/apps
+```
+
+
+
+***过程: 启动并测试集群***
+
+1. 确保 HBase 没有在任何节点上运行。如果您在以前的测试中忘记停止 HBase，那么将会出现错误。使用 jps 命令检查 HBase 是否在任何节点上运行。查找进程 HMaster、 HRegionServer 和 HQuorumPeer。如果他们存在，杀了他们。
+
+2. 启动集群。在 node-a 上，发出 start-hbase.sh 命令。
+
+   首先是 ZooKeeper，然后是 master，然后是 RegionServers，最后是备份 master。
+
+```
+[hadoop@hadoop1 hbase-2.4.2]$ bin/start-hbase.sh
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/home/hadoop/apps/hadoop-3.2.2/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/hadoop/apps/hbase-2.4.2/lib/client-facing-thirdparty/slf4j-log4j12-1.7.30.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/home/hadoop/apps/hadoop-3.2.2/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/hadoop/apps/hbase-2.4.2/lib/client-facing-thirdparty/slf4j-log4j12-1.7.30.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.Log4jLoggerFactory]
+hadoop2: running zookeeper, logging to /home/hadoop/apps/hbase-2.4.2/bin/../logs/hbase-hadoop-zookeeper-hadoop2.out
+hadoop3: running zookeeper, logging to /home/hadoop/apps/hbase-2.4.2/bin/../logs/hbase-hadoop-zookeeper-hadoop3.out
+hadoop1: running zookeeper, logging to /home/hadoop/apps/hbase-2.4.2/bin/../logs/hbase-hadoop-zookeeper-hadoop1.out
+running master, logging to /home/hadoop/apps/hbase-2.4.2/bin/../logs/hbase-hadoop-master-hadoop1.out
+hadoop2: running regionserver, logging to /home/hadoop/apps/hbase-2.4.2/bin/../logs/hbase-hadoop-regionserver-hadoop2.out
+hadoop3: running regionserver, logging to /home/hadoop/apps/hbase-2.4.2/bin/../logs/hbase-hadoop-regionserver-hadoop3.out
+hadoop2: running master, logging to /home/hadoop/apps/hbase-2.4.2/bin/../logs/hbase-hadoop-master-hadoop2.out
+[hadoop@hadoop1 hbase-2.4.2]$ jps
+3716 Jps
+1722 DataNode
+2747 QuorumPeerMain
+3451 HMaster
+1598 NameNode
+2207 NodeManager
+[hadoop@hadoop1 hbase-2.4.2]$
+[hadoop@hadoop1 hbase-2.4.2]$
+```
+
+3. 验证进程是否正在运行。
+
+`hadoop1` `jps` *Output* 输出
+
+[hadoop@hadoop1 hbase-2.4.2]$ jps
+3716 Jps
+1722 DataNode
+2747 QuorumPeerMain
+3451 HMaster
+1598 NameNode
+2207 NodeManager
+
+`hadoop2` `jps` *Output* 输出
+
+[hadoop@hadoop2 apps]$ jps
+1584 NodeManager
+2896 Jps
+2374 HRegionServer
+1944 QuorumPeerMain
+1469 DataNode
+2559 HMaster
+
+`hadoop3` `jps` *Output* 输出
+
+[hadoop@hadoop3 apps]$ jps
+3168 Jps
+2881 HRegionServer
+1668 NodeManager
+1541 SecondaryNameNode
+2391 QuorumPeerMain
+1470 DataNode
+
+
+
+4. 浏览网页
+
+http://hadoop1:16010/
+
+http://192.168.100.181:16010/
+
+![image-20210413201525302](..\..\images\hbase-start-03.png)
+
+![image-20210413201605437](..\..\images\hbase-start-04.png)
+
+
+
 #### 参考：
 
 [Ubuntu18.04 hadoop2.7.7+hbase2.0.5单机伪分布式环境搭建](http://news.migage.com/articles/Ubuntu1804+hadoop277hbase205%E5%8D%95%E6%9C%BA%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA_1904855_csdn.html)
 
 https://zookeeper.apache.org/doc/r3.7.0/zookeeperStarted.html
 
+错误：
 
+[Master startup cannot progress, in holding-pattern until region onlined.](https://www.cnblogs.com/yankang/p/10582641.html)
 

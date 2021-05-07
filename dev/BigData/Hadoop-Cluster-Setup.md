@@ -6,6 +6,8 @@ https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/ClusterS
 
 #### 目的
 
+
+
 本文档描述了如何安装和配置 Hadoop 集群，包括从几个节点到拥有数千个节点的超大型集群。要使用 Hadoop，您可能首先希望将其安装在单台机器上(请参阅[单节点设置](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html))。
 
 这个文档不包括高级主题，如[安全](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SecureMode.html)或高可用性。
