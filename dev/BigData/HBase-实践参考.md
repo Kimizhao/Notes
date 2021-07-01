@@ -31,3 +31,21 @@ A manually paginated version has lots more complexities, as you note, like havin
 阿里云：云数据库HBase
 
 开发指南：https://help.aliyun.com/document_detail/164394.html?spm=a2c4g.11186623.6.920.3a045e1fyj0Ntf
+
+
+
+hbase-shell-commands
+
+https://learnhbase.wordpress.com/2013/03/02/hbase-shell-commands/
+
+
+
+参考网址：
+
+1.[HBase设计规范](https://my.oschina.net/wca/blog/4770126)
+
+2.[Hbase Rowkey设计规范参考](https://www.dazhuanlan.com/2019/11/28/5ddf9f4d106b9/)
+
+3.[HBase Rowkey设计规范](https://blog.51cto.com/u_14309075/2415006)
+
+4.[hbase 表设计风格指南](https://szthanatos.github.io/post/hbase_design/)

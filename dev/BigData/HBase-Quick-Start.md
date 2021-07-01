@@ -398,7 +398,7 @@ drwx--x--x   - zzh supergroup          0 2021-04-06 20:57 /hbase/staging
 
 conf/hbase-env.sh
 
-```
+```shell
 # Tell HBase whether it should manage it's own instance of ZooKeeper or not.
 export HBASE_MANAGES_ZK=true
 ```
@@ -409,7 +409,7 @@ export HBASE_MANAGES_ZK=true
 
 拷贝包到另外2台，三台集群主机使用同样配置，目录也需要一致。
 
-```
+```shell
 scp -r hbase-2.4.2 hadoop@hadoop2:~/apps
 scp -r hbase-2.4.2 hadoop@hadoop3:~/apps
 ```
@@ -424,7 +424,7 @@ scp -r hbase-2.4.2 hadoop@hadoop3:~/apps
 
    首先是 ZooKeeper，然后是 master，然后是 RegionServers，最后是备份 master。
 
-```
+```shell
 [hadoop@hadoop1 hbase-2.4.2]$ bin/start-hbase.sh
 SLF4J: Class path contains multiple SLF4J bindings.
 SLF4J: Found binding in [jar:file:/home/hadoop/apps/hadoop-3.2.2/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
@@ -458,6 +458,7 @@ hadoop2: running master, logging to /home/hadoop/apps/hbase-2.4.2/bin/../logs/hb
 
 `hadoop1` `jps` *Output* 输出
 
+```shell
 [hadoop@hadoop1 hbase-2.4.2]$ jps
 3716 Jps
 1722 DataNode
@@ -465,9 +466,11 @@ hadoop2: running master, logging to /home/hadoop/apps/hbase-2.4.2/bin/../logs/hb
 3451 HMaster
 1598 NameNode
 2207 NodeManager
+```
 
 `hadoop2` `jps` *Output* 输出
 
+```shell
 [hadoop@hadoop2 apps]$ jps
 1584 NodeManager
 2896 Jps
@@ -475,9 +478,11 @@ hadoop2: running master, logging to /home/hadoop/apps/hbase-2.4.2/bin/../logs/hb
 1944 QuorumPeerMain
 1469 DataNode
 2559 HMaster
+```
 
 `hadoop3` `jps` *Output* 输出
 
+```shell
 [hadoop@hadoop3 apps]$ jps
 3168 Jps
 2881 HRegionServer
@@ -485,6 +490,7 @@ hadoop2: running master, logging to /home/hadoop/apps/hbase-2.4.2/bin/../logs/hb
 1541 SecondaryNameNode
 2391 QuorumPeerMain
 1470 DataNode
+```
 
 
 
@@ -509,4 +515,32 @@ https://zookeeper.apache.org/doc/r3.7.0/zookeeperStarted.html
 错误：
 
 [Master startup cannot progress, in holding-pattern until region onlined.](https://www.cnblogs.com/yankang/p/10582641.html)
+
+
+
+安装：2.2.7版本错误
+
+[HBase master.HMaster: Failed to become active master](https://www.cnblogs.com/jhxxb/p/11599206.html)
+
+
+
+1.[java连接Hbase操作数据库的全过程---搭建伪分布式hadoop环境](https://blog.csdn.net/qq1049545450/article/details/90019159)
+
+2.[java连接Hbase操作数据库的全过程---搭建hbase数据库](https://blog.csdn.net/qq1049545450/article/details/90023386)
+
+> 看看下regionserver是不是绑定到服务器的ip上，而不是localhost上的，这个对后面java操作hbase很重要：
+
+3.[java连接Hbase操作数据库的全过程---java api操作Hbase数据库](https://blog.csdn.net/qq1049545450/article/details/90025401)
+
+
+
+->[Hbase搭建遇到得问题-regionServer连接不上master](https://blog.csdn.net/u010741032/article/details/106220844)
+
+应为regionserver通过hostname找绑定ip，所以需要在/etc/hosts添加hostname和ip映射
+
+或者把主机名称从
+
+```
+hostnamectl set-hostname hadoop001
+```
 

@@ -34,13 +34,21 @@
 
 
 
+#### 纯洁的微笑Spring Boot教程
 
-
-Spring Boot 教程、技术栈示例代码，快速简单上手教程。
+Spring Boot教程、技术栈示例代码，快速简单上手教程。
 
 https://github.com/ityouknow/spring-boot-examples
 
+##### MyBatis
 
+[Spring Boot(六)：如何优雅的使用 Mybatis](http://www.ityouknow.com/springboot/2016/11/06/spring-boot-mybatis.html)
+
+[Spring Boot(七)：Mybatis 多数据源最简解决方案](http://www.ityouknow.com/springboot/2016/11/25/spring-boot-multi-mybatis.html)
+
+[Spring Boot 2 (十一)：如何优雅的使用 MyBatis 之 MyBatis-Plus](http://www.ityouknow.com/springboot/2019/05/14/spring-boot-mybatis-plus.html)
+
+https://mybatis.plus/	https://github.com/baomidou/mybatis-plus
 
 
 

@@ -1,18 +1,42 @@
-### Hadoop-Single-Node-Cluster
+# Hadoop-Single-Node-Cluster
 
-[Setting up a Single Node Cluster](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
+## 环境准备
 
-下载：https://apache.website-solution.net/hadoop/common/
+操作系统：Ubuntu 16.04
 
-包存放位置`I:\800-常用工具\apache-hadoop\hadoop-3.2.2`。
+hadoop版本：3.2.2
 
-安装位置`zzh@ubuntu-Shangqi-N720:~/apache-hadoop/hadoop-3.2.2$`
+JDK版本：1.8.0_281
 
+## 下载
 
+从[官网下载](https://apache.website-solution.net/hadoop/common/hadoop-3.2.2/)，版本为3.2.2，文件名：hadoop-3.2.2.tar.gz
 
-**配置**
+```shell
+# 到当前用户目录
+$ cd
+# 创建apache-hadoop目录
+$ mkdir apache-hadoop
+# 进入目录
+$ cd apache-hadoop
+# 下载安装包
+$ curl -O https://apache.website-solution.net/hadoop/common/hadoop-3.2.2/hadoop-3.2.2.tar.gz
+# 下载速度看网速，完成后解压
+$ tar -zxcf hadoop-3.2.2.tar.gz
+# 查看解压文件，多了个hadoop-3.2.2文件夹
+$ ls
+hadoop-3.2.2.tar.gz hadoop-3.2.2
+# 进入hadoop-3.2.2目录
+$ cd hadoop-3.2.2
+```
 
-etc/hadoop/core-site.xml:
+文件包准备完成。
+
+## 安装
+
+### 配置
+
+1. etc/hadoop/core-site.xml:
 
 ```
 <configuration>
@@ -25,7 +49,7 @@ etc/hadoop/core-site.xml:
 
 
 
-etc/hadoop/hdfs-site.xml:
+2. etc/hadoop/hdfs-site.xml:
 
 ```
 <configuration>
@@ -33,28 +57,35 @@ etc/hadoop/hdfs-site.xml:
         <name>dfs.replication</name>
         <value>1</value>
     </property>
-</configuration>
-```
-
-
-
-如果没有配置namenode和datanode，每次重启都需要格式化。
-
     <property>
-        <name>dfs.namenode.name.dir</name>
-        <value>/home/zzh/apache-hadoop/hadoop-3.2.2/data/name</value>
-        <description>为了保证元数据的安全一般配置多个不同目录</description>
+    	<name>dfs.namenode.name.dir</name>
+    	<value>/home/hadoop/apache-hadoop/hadoop-3.2.2/data/name</value>
+    	<description>为了保证元数据的安全一般配置多个不同目录</description>
     </property>
     <property>
         <name>dfs.datanode.data.dir</name>
-        <value>/home/zzh/apache-hadoop/hadoop-3.2.2/data/data</value>
+        <value>/home/hadoop/apache-hadoop/hadoop-3.2.2/data/data</value>
         <description>datanode 的数据存储目录</description>
     </property>
-
-
-**设置免密**
-
+</configuration>
 ```
+
+如果没有配置namenode和datanode，每次重启都需要格式化。其中目录根据实际情况修改。
+
+
+
+3. 编辑`etc/hadoop/hadoop-env.sh`
+
+```bash
+# set to the root of your Java installation
+export JAVA_HOME=/home/hadoop/jdk/jdk1.8.0_281
+```
+
+
+
+#### 设置免密
+
+```shell
  $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
  $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
  $ chmod 0600 ~/.ssh/authorized_keys
@@ -62,13 +93,27 @@ etc/hadoop/hdfs-site.xml:
 
 
 
-**运行**
+#### 运行
 
 1.格式化
 
+```shell
+$ bin/hdfs namenode -format
 ```
-bin/hdfs namenode -format
+
+
+
+2.启动
+
+```shell
+$ sbin/start-dfs.sh
 ```
+
+
+
+### 参考
+
+[Setting up a Single Node Cluster](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
 
 
 
@@ -107,15 +152,6 @@ $
 $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 $ chmod 0600 ~/.ssh/authorized_keys
 $ sbin/start-dfs.sh
-```
-
-
-
-编辑`etc/hadoop/hadoop-env.sh`
-
-```bash
-# set to the root of your Java installation
-export JAVA_HOME=/home/zzh/jdk/jdk1.8.0_281
 ```
 
 

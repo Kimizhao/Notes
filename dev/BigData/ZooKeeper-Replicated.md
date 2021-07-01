@@ -100,3 +100,15 @@ $ ssh  hadoop@hadoop3 "mkdir  -p ~/data/zookeeper ;echo 3 >~/data/zookeeper/myid
 $ bin/zkServer.sh start
 ```
 
+
+
+```
+# 进入zookeeper控制台
+zkCli.sh
+
+# 清理hbase数据
+deleteall /hbase
+
+# 重启整个框架，hbase-site.xml配置才会生效
+```
+

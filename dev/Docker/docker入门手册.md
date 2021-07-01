@@ -10,93 +10,109 @@
 ## Docker 镜像常用命令
 
 ### 搜索镜像
-```
-docker search java
+```shell
+$ docker search java
 ```
 
 
 ### 下载镜像
 
-- ```
-  docker pull java:8
-  docker pull macro/eureka-server:0.0.1
-  ```
+ ```shell
+ $ docker pull java:8
+ $ docker pull macro/eureka-server:0.0.1
+ ```
 
-  
+
 ### 列出镜像
-docker images
+```shell
+$ docker images
+```
+
 ### 删除镜像
 
-- docker rmi java
-- docker rmi -f java 
-- docker rmi -f $(docker images)
+```shell
+$ docker rmi java
+$ docker rmi -f java 
+$ docker rmi -f $(docker images)
+```
 
 ## Docker 容器常用命令
 ### 新建并启动容器
-docker run -d -p 91:80 nginx
+```shell
+$ docker run -d -p 91:80 nginx
+```
+
 ### 列出容器
 
-docker ps
+```shell
+$ docker ps
+```
+
 ### 停止容器
 
-docker stop $ContainerId
-
-
+```shell
+$ docker stop $ContainerId
+```
 
 ### 强制停止容器
 
-docker kill $ContainerId
-
-
+```shell
+$ docker kill $ContainerId
+```
 
 ### 启动已停止的容器
 
-docker start $ContainerId
-
-
+```shell
+$ docker start $ContainerId
+```
 
 ### 进入容器
 
-- docker inspect --format "{{.State.Pid}}" $ContainerId
-- nsenter --target "$pid" --mount --uts --ipc --net --pid
-
-
+```shell
+$ docker inspect --format "{{.State.Pid}}" $ContainerId
+$ nsenter --target "$pid" --mount --uts --ipc --net --pid
+```
 
 ### 删除容器
 
-- docker rm $ContainerId
-- docker rm -f $(docker ps -a -q)
-
-
+```shell
+$ docker rm $ContainerId
+$ docker rm -f $(docker ps -a -q)
+```
 
 ### 查看启动错误日志
 
-docker logs $ContainerIdName(或者$ContainerId)
-
-
+```shell
+$ docker logs $ContainerIdName(或者$ContainerId)
+```
 
 ### 查看容器的IP地址（172.17.0.*）
 
-docker inspect --format '{{ .NetworkSettings.IPAddress }}' $ContainerId
-
-
+```shell
+$ docker inspect --format '{{ .NetworkSettings.IPAddress }}' $ContainerId
+```
 
 ### 同步宿主机时间到容器
 
-docker cp /etc/localtime $ContainerName:/etc/
-
-
+```shell
+$ docker cp /etc/localtime $ContainerName:/etc/
+```
 
 ### 在宿主机查看docker使用cpu、内存、网络、io情况
 
-- 查看指定容器情况：docker stats $ContainerName
-- 查看所有容器情况：docker stats -a
+```shell
+# 查看指定容器情况：
+$ docker stats $ContainerName
 
-
+# 查看所有容器情况：
+$ docker stats -a
+```
 
 ### 进入docker内部的bash
 
-docker exec -it $ContainerName /bin/bash
+```shell
+# docker exec -it $ContainerName /bin/bash
+```
 
 
 

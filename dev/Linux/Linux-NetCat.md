@@ -4,6 +4,14 @@
 
 
 
+### 安装
+
+```shell
+yum install nc
+```
+
+
+
 - #### 开启端口
 
 ```shell

@@ -11,7 +11,6 @@
 9、查看系统内存信息：free
 10、查看usb信息lsusb（/sbin/lsusb)lsusb -tv
 11、查看进程信息ps树状显示进程：ps -e -o pid,args --forest
-
 12、监控网络tcpdump
 13、查看用户打开的文件句柄的列表lsof查看打开用户目录的进程： lsof ~
 14、查看和跟踪系统调用和信号strace
