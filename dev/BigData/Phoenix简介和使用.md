@@ -73,6 +73,30 @@ drop view "person";
 
 
 
+修改自动类型
+
+查看元数据信息
+
+```SQL
+SELECT TENANT_ID,TABLE_SCHEM,TABLE_NAME,COLUMN_NAME,COLUMN_FAMILY,DATA_TYPE,COLUMN_SIZE,DECIMAL_DIGITS FROM SYSTEM.CATALOG WHERE TABLE_NAME= 'GB32960_TRACK';
+```
+
+修改元数据
+
+```sql
+UPSERT INTO SYSTEM.CATALOG (TENANT_ID,TABLE_SCHEM,TABLE_NAME,COLUMN_NAME,COLUMN_FAMILY,DATA_TYPE) VALUES ('','','GB32960_TRACK','CAR_STATUS','0',5);
+```
+
+
+
+
+
 ## 参考
 
 1.[Phoenix的安装使用与SQL查询HBase](https://www.cnblogs.com/frankdeng/p/9536450.html)
+
+2.[Apache Phoenix数据类型](https://www.cnblogs.com/sh425/p/7274249.html)
+
+3.[IDEA 添加classPath](https://blog.csdn.net/t95921/article/details/53585225)
+
+4.[Phoenix表数据类型修改](https://blog.csdn.net/yuanhaiwn/article/details/82141923)

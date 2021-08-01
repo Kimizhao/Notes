@@ -530,6 +530,8 @@ https://zookeeper.apache.org/doc/r3.7.0/zookeeperStarted.html
 
 > 看看下regionserver是不是绑定到服务器的ip上，而不是localhost上的，这个对后面java操作hbase很重要：
 
+
+
 3.[java连接Hbase操作数据库的全过程---java api操作Hbase数据库](https://blog.csdn.net/qq1049545450/article/details/90025401)
 
 

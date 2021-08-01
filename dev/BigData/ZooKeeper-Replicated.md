@@ -72,7 +72,6 @@ server.3=hadoop3:2888:3888
 $ mkdir ~/data/zookeeper
 $ echo 1 > ~/data/zookeeper/myid
 $ cat ~/data/zookeeper/myid
-1
 ```
 
 解释：
@@ -110,5 +109,19 @@ zkCli.sh
 deleteall /hbase
 
 # 重启整个框架，hbase-site.xml配置才会生效
+```
+
+
+
+
+
+新
+
+设置服务器ID
+
+```
+$ mkdir ~/apache-zk/data
+$ echo 61 > ~/apache-zk/data/myid
+$ cat ~/apache-zk/data/myid
 ```
 

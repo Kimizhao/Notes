@@ -1,5 +1,17 @@
 ### Flink-参考
 
+源码：https://github.com/apache/flink
+
+编译：
+
+```shell
+git clone https://github.com/apache/flink.git
+cd flink
+mvn clean package -DskipTests # this will take up to 10 minutes
+```
+
+
+
 [Flink官方](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/)
 
 教程
@@ -26,14 +38,57 @@ https://github.com/flink-china
 
 
 
-
-
-
-
 尚硅谷-flink课程
 
-网友笔记：https://www.yuque.com/yingwenerjie/yir85b/phgxuw
+网友整理的课程笔记：https://www.yuque.com/yingwenerjie/yir85b/phgxuw
 
-这个笔记不错。https://ashiamd.github.io/docsify-notes/#/study/BigData/Flink/%E5%B0%9A%E7%A1%85%E8%B0%B7Flink%E5%85%A5%E9%97%A8%E5%88%B0%E5%AE%9E%E6%88%98-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0
 
-https://github.com/Ashiamd/docsify-notes
+
+Demo:
+
+https://github.com/Kimizhao/ss-java-start
+
+
+
+
+
+### Flink windows下用maven创建flink项目
+
+参考：[1](https://blog.csdn.net/walykyy/article/details/105938565)
+
+1、java版本：**记住一定要用cmd执行**
+
+```shell
+mvn archetype:generate -DarchetypeGroupId=org.apache.flink -DarchetypeArtifactId=flink-quickstart-java -DarchetypeVersion=1.13.1 -DgroupId=org.apache.flink.quickstart -DartifactId=flink-java-project -Dversion=0.1 -Dpackage=org.apache.flink.quickstart -DinteractiveMode=false
+```
+
+
+
+2、scala版本：**记住一定要用cmd执行**
+
+```shell
+mvn archetype:generate -DarchetypeGroupId=org.apache.flink -DarchetypeArtifactId=flink-quickstart-scala -DarchetypeVersion=1.13.1 -DgroupId=org.apache.flink.quickstart -DartifactId=flink-scala-project -Dversion=0.1 -Dpackage=org.apache.flink.quickstart -DinteractiveMode=false
+```
+
+
+
+### 部署各种错误
+
+##### Caused by: org.apache.flink.runtime.jobmanager.scheduler.NoResourceAvailableException: Could not acquire the minimum required resources
+
+看集群中有几个job
+
+设置
+
+env.setParallelism(1);
+
+或者调整
+
+taskmanager.numberOfTaskSlots
+
+##### Caused by: java.lang.ClassCastException: cannot assign instance of org.apache.commons.collections.map.LinkedMap to field org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumerBase.pendingOffsetsToCommit of type org.apache.commons.collections.map.LinkedMap in instance of org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer
+
+模块依赖复杂导致冲突。
+
+查看flink lib下和打包依赖
+
