@@ -45,3 +45,16 @@
    -r--r-----. 1 root root 4030 12月  10 09:59 /etc/sudoers
 
 5. 切换到普通用户，测试用户权限提升功能 
+
+
+
+### 可能的问题
+
+问题：
+sudo:sudo /etc/sudoers is world writable
+sudo:no valid sudoers sources found ,quitting
+sudo:unable to initialize policy plugin
+
+解决方案：
+sudoers的权限被改了，改回来就好了。
+pkexec  chmod  0440  /etc/sudoers

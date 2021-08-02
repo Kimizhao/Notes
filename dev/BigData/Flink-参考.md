@@ -50,6 +50,10 @@ https://github.com/Kimizhao/ss-java-start
 
 
 
+【Flink 最锋利的武器：Flink SQL 入门和实战】博主：大数据成神之路https://cloud.tencent.com/developer/article/1450865
+
+
+
 
 
 ### Flink windows下用maven创建flink项目

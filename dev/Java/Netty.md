@@ -40,3 +40,9 @@ https://www.cnblogs.com/gaochundong/p/csharp_tcp_service_models.html#saea
 [用Netty实现单机百万TCP长连接](https://blog.csdn.net/a_bcd_123/article/details/69525333)
 
 [SpringBoot使用netty](https://www.jianshu.com/p/b60180a0a0e6)
+
+
+
+netty demo
+
+https://github.com/fuzhengwei/itstack-demo-netty
