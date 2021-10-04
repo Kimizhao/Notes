@@ -66,3 +66,8 @@ docker run -d \
     emqx/emqx-ee:4.3.2-alpine-amd64
 ```
 
+
+
+
+
+[Emqx高可用架构](https://www.cnblogs.com/jimoliunian/p/12964975.html)

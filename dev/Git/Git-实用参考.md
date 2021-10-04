@@ -19,6 +19,10 @@
 
 
 
+#### [安装](https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)
+
+
+
 #### 其他参考
 
 - [Git详解之三 Git分支](http://www.open-open.com/lib/view/open1328069889514.html)
@@ -62,7 +66,7 @@ git blame
 
 
 
-4.git 提交后重改commit log ？
+ 4.git 提交后重改commit log ？
 
 ```
 git 提交后，修改commit log
@@ -84,6 +88,36 @@ $git commit -am " message”
 
 ```
 git cherry-pick
+```
+
+
+
+6.git diff 生成diff文件
+
+```
+// 查看更新文件
+git status
+
+// 将修改文件生成 diff 文件
+git diff --full-index > 201812141040.diff
+
+// 将指定的修改文件生成 diff 文件
+git diff --full-index [你的文件名 ...] > 201812141040.diff
+```
+
+
+
+7.应用diff文件
+
+```
+# 检查diff是否能正常打入
+git apply --check {path/to/xxx.diff}
+
+# 打入patch/diff:
+git apply {path/to/xxx.diff}
+
+# 或者
+git am {path/to/xxx.diff}
 ```
 
 

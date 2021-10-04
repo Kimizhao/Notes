@@ -100,3 +100,6 @@ UPSERT INTO SYSTEM.CATALOG (TENANT_ID,TABLE_SCHEM,TABLE_NAME,COLUMN_NAME,COLUMN_
 3.[IDEA 添加classPath](https://blog.csdn.net/t95921/article/details/53585225)
 
 4.[Phoenix表数据类型修改](https://blog.csdn.net/yuanhaiwn/article/details/82141923)
+
+5.[phoenix表结构修改（新增字段，字段类型修改）](https://blog.csdn.net/lz6363/article/details/105499504)
+

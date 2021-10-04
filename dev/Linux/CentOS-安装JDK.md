@@ -56,3 +56,8 @@ Java(TM) SE Runtime Environment (build 1.8.0_281-b09)
 Java HotSpot(TM) 64-Bit Server VM (build 25.281-b09, mixed mode)
 ```
 
+
+
+### 卸载openjdk
+
+ sudo apt-get purge openjdk*

@@ -7,6 +7,97 @@
 
 
 
+
+
+## CentOS安装
+
+参考：https://www.runoob.com/docker/centos-docker-install.html
+
+
+
+## 使用官方安装脚本自动安装
+
+```
+curl -fsSL https://get.docker.com | bash -s docker --mirror aliyun
+```
+
+
+
+## 手动安装
+
+```
+# 添加阿里源
+$ sudo yum-config-manager \
+    --add-repo \
+    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+    
+# 安装20.10.7版本
+$ sudo yum install docker-ce-20.10.7 docker-ce-cli-20.10.7 containerd.io
+```
+
+
+
+## **启动Docker**
+
+```
+$ sudo systemctl start docker
+```
+
+
+
+```
+$ sudo systemctl enable docker
+```
+
+
+
+## **将用户加入Docker用户组**
+
+```
+# 将test用户加入docker用户组，这样就不需要每次在docker命令前加sudo
+sudo usermod -aG docker test
+# 更新用户组
+newgrp docker
+```
+
+
+
+## **查看版本**
+
+```
+$ docker version
+Client: Docker Engine - Community
+ Version:           20.10.6
+ API version:       1.41
+ Go version:        go1.13.15
+ Git commit:        370c289
+ Built:             Fri Apr  9 22:45:33 2021
+ OS/Arch:           linux/amd64
+ Context:           default
+ Experimental:      true
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          20.10.6
+  API version:      1.41 (minimum version 1.12)
+  Go version:       go1.13.15
+  Git commit:       8728dd2
+  Built:            Fri Apr  9 22:43:57 2021
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.4.6
+  GitCommit:        d71fcd7d8303cbf684402823e425e9dd2e99285d
+ runc:
+  Version:          1.0.0-rc95
+  GitCommit:        b9ee9c6314599f1b4a7f497e1f1f856fe433d3b7
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+```
+
+
+
 ## Docker 镜像常用命令
 
 ### 搜索镜像
@@ -36,7 +127,10 @@ $ docker rmi -f java
 $ docker rmi -f $(docker images)
 ```
 
+
+
 ## Docker 容器常用命令
+
 ### 新建并启动容器
 ```shell
 $ docker run -d -p 91:80 nginx
@@ -151,6 +245,87 @@ $ docker run -dit --restart unless-stopped redis
 
 ```
 docker update --restart=always web
+```
+
+
+
+## Docker 命令行
+
+### [docker run](https://docs.docker.com/engine/reference/commandline/run/)
+
+在新容器中运行命令
+
+选项
+
+#### 启动一个容器
+
+```shell
+$ docker run --name test -itd debian
+```
+
+`--name`: 将test名称分配给容器
+
+`--interactive , -i`:Keep STDIN open even if not attached
+
+`--tty` , `-t`: Allocate a pseudo-TTY 分配伪终端
+
+`--detach` , `-d`: Run container in background and print container ID 后台运行容器并打印容器ID
+
+
+
+#### 挂载目录到宿主目录
+
+```shell
+$ docker  run  -v `pwd`:`pwd` -w `pwd` -i -t  ubuntu pwd
+```
+
+The `-v` flag mounts the current working directory into the container. The `-w` lets the command being executed inside the current working directory, by changing into the directory to the value returned by `pwd`. So this combination executes the command using the container, but inside the current working directory. 
+
+`-v`:当前目录挂载到容器。
+
+`-w`:设置当前工作目录，到PWD返回的目录
+
+```shell
+$ docker run -v /doesnt/exist:/foo -w /foo -i -t ubuntu bash
+```
+
+When the host directory of a bind-mounted volume doesn’t exist, Docker will automatically create this directory on the host for you. In the example above, Docker will create the `/doesnt/exist` folder before starting your container.
+
+如果绑定挂载的宿主目录不存在，Docker将自动创建`/doesnt/exist`目录。
+
+
+
+#### 将条目添加到容器HOST主机文件
+
+```shell
+$ docker run --add-host=docker:10.180.0.1 --rm -it debian
+```
+
+Sometimes you need to connect to the Docker host from within your container. To enable this, pass the Docker host’s IP address to the container using the `--add-host` flag. To find the host’s address, use the `ip addr show` command.
+
+通过add-host标签将容器HOST主机文件添加条目
+
+
+
+## Docker 图形化
+
+官方[安装portainer](https://documentation.portainer.io/v2.0/deploy/ceinstalldocker/)
+
+中文[安装链接](http://www.netkiller.cn/virtualization/docker/ch01s02.html#idm108453187840)
+
+Linux下
+
+### Portainer服务端部署
+
+```
+$ docker volume create portainer_data
+$ docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+```
+
+### Portainer代理部署
+
+```
+$ docker run -d -p 9001:9001 --name portainer_agent --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:/var/lib/docker/volumes portainer/agent
 ```
 
 
