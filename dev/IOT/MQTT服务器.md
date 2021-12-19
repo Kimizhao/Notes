@@ -18,3 +18,11 @@ EMQ X开源服务器：
 
 [小白入门搭建MQTT服务器，使用安信可AT透传MQTT固件，轻松对接服务器。（附带demo）](https://aithinker.blog.csdn.net/article/details/104625213)
 
+
+
+
+
+
+
+[MQTT（一）C#使用 MQTTnet 快速实现 MQTT 通信（文末有完整Demo下载）](https://blog.csdn.net/panwen1111/article/details/79245161)
+

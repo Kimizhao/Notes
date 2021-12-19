@@ -10,6 +10,10 @@ https://blog.csdn.net/wxynj/article/details/81631135
 
 
 
+[A Guide to Java Streams in Java 8: In-Depth Tutorial With Examples](https://stackify.com/streams-guide-java-8/)
+
+
+
 ## 基础
 
 ### Entity/Model/DTO 等用法区别

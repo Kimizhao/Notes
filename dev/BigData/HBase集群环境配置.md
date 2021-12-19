@@ -39,29 +39,48 @@ HBase 的运行需要依赖 Hadoop 和 JDK(`HBase 2.0+` 对应 `JDK 1.8+`) 。�
 
 ### 3.1 下载并解压
 
-下载并解压，这里我下载的是 CDH 版本 HBase，下载地址为：http://archive.cloudera.com/cdh5/cdh/5/
+下载并解压，这里我下载的是开源版本 `2.2.7`，下载地址为：https://downloads.apache.org/hbase/
 
 ```shell
-# tar -zxvf hbase-1.2.0-cdh5.15.2.tar.gz
+# 到当前用户目录
+$ cd
+
+# 创建apache-hbase目录
+$ mkdir apache-hbase
+
+# 下载安装包
+$ curl -O https://downloads.apache.org/hbase/2.2.7/hbase-2.2.7-bin.tar.gz
+
+# 下载速度看网速，完成后解压
+$ tar -zxvf hbase-2.2.7-bin.tar.gz
+
+# 查看解压文件，多了个hbase-2.2.7-bin文件夹
+$ ls
+hbase-2.2.7-bin.tar.gz hbase-2.2.7-bin
+
+# 进入hbase-2.2.7-bin目录
+$ cd hbase-2.2.7-bin
 ```
+
+
 
 ### 3.2 配置环境变量
 
 ```shell
-# vim /etc/profile
+$ vim /etc/profile
 ```
 
 添加环境变量：
 
 ```shell
-export HBASE_HOME=/usr/app/hbase-1.2.0-cdh5.15.2
+export HBASE_HOME=/home/hadoop/apache-hbase/hbase-2.2.7-bin
 export PATH=$HBASE_HOME/bin:$PATH
 ```
 
 使得配置的环境变量立即生效：
 
 ```shell
-# source /etc/profile
+$ source /etc/profile
 ```
 
 ### 3.3 集群配置
@@ -89,12 +108,12 @@ export HBASE_MANAGES_ZK=false
     <property>
         <!-- 指定 hbase 在 HDFS 上的存储位置 -->
         <name>hbase.rootdir</name>
-        <value>hdfs://hadoop61:9000/hbase</value>
+        <value>hdfs://mycluster/hbase</value>
     </property>
     <property>
         <!-- 指定 zookeeper 的地址-->
         <name>hbase.zookeeper.quorum</name>
-        <value>hadoop61:2181,hadoop62:2181,hadoop63:2181</value>
+        <value>hadoop001:2181,hadoop002:2181,hadoop003:2181</value>
     </property>
 </configuration>
 ```
@@ -102,15 +121,15 @@ export HBASE_MANAGES_ZK=false
 #### 3. regionservers
 
 ```
-hadoop61
-hadoop62
-hadoop63
+hadoop001
+hadoop002
+hadoop003
 ```
 
 #### 4. backup-masters
 
 ```
-hadoop62
+hadoop002
 ```
 
 ` backup-masters` 这个文件是不存在的，需要新建，主要用来指明备用的 master 节点，可以是多个，这里我们以 1 个为例。

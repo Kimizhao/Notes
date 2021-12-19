@@ -45,3 +45,15 @@ https://help.aliyun.com/product/30520.html
 https://console.cloud.tencent.com/iotexplorer
 
 入门概述：https://cloud.tencent.com/document/product/1081/34743
+
+
+
+**国内物联网基础平台**
+
+http://doc.jetlinks.cn/
+
+
+
+[物联网 IoT 初学者教程](https://github.com/microsoft/IoT-For-Beginners)
+
+微软发布的英文教程，详细介绍什么是物联网，以及物联网的应用。(issue-173)

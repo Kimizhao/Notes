@@ -11,3 +11,4 @@
 2.在http{}段中加入 client_max_body_size 20m; 20m为允许最大上传的大小。
 3.保存后重启nginx，问题解决。
 ```
+

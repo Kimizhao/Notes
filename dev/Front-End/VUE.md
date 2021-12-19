@@ -30,3 +30,54 @@ Vue.js 教程-菜鸟教程https://www.runoob.com/vue2/vue-tutorial.html
 vue3.0+element导出excel表格
 
 https://www.jianshu.com/p/7b58e24a1391
+
+
+
+### [Vue CLI开始](https://cli.vuejs.org/)
+
+### 安装
+
+```
+npm install -g @vue/cli
+# OR
+yarn global add @vue/cli
+```
+
+### 创建项目
+
+```
+vue create my-project
+# OR
+vue ui
+```
+
+
+
+## [部署Docker的nginx](https://cli.vuejs.org/zh/guide/deployment.html#docker-nginx)
+
+
+
+
+
+### [模式和环境变量](https://cli.vuejs.org/zh/guide/mode-and-env.html#%E6%A8%A1%E5%BC%8F%E5%92%8C%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F)
+
+vue-cli-service build
+
+编译
+
+```
+vue-cli-service build --mode development
+```
+
+默认production
+
+```
+vue-cli-service build 
+```
+
+vue-cli-service serve
+
+```
+vue-cli-service serve --open
+```
+

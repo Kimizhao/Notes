@@ -128,3 +128,11 @@ Options:
         -v      OS version
 ```
 
+
+
+#### kill全部Java进程
+
+```sh
+jps |awk '{print $1}' |xargs kill -9
+```
+

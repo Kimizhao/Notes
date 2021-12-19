@@ -4,18 +4,18 @@
 
 - [Git](https://git-scm.com/)
 - [Git中文手册](https://git-scm.com/book/zh/v2)
-
 - [Git教程-菜鸟教程](https://www.runoob.com/git/git-tutorial.html)
-
 - [Git Exercises](https://gitexercises.fracz.com/)
   Git 学习网站，通过示例仓库，提供一系列 Git 的小练习，帮助用户掌握这个版本管理工具。
-
 - [Git工作流程图示](https://zepel.io/blog/5-git-workflows-to-improve-development/)【摘自：科技爱好者周刊（第 119 期）】
-
 - [廖雪峰的Git教程](https://www.liaoxuefeng.com/wiki/896043488029600)
-
 - [不同 IDE 中的工作](https://docs.microsoft.com/zh-cn/azure/devops/repos/git/?view=azure-devops)
 - [Commit message 和 Change log 编写指南](https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html) 阮一峰整理的commit书写规范
+- [配置邮件](https://docs.gitlab.com/omnibus/settings/smtp.html#smtp-connection-pooling),[1](http://www.linuxea.com/1855.html)
+
+
+
+#### [安装](https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)
 
 
 
@@ -62,7 +62,7 @@ git blame
 
 
 
-4.git 提交后重改commit log ？
+ 4.git 提交后重改commit log ？
 
 ```
 git 提交后，修改commit log
@@ -84,6 +84,36 @@ $git commit -am " message”
 
 ```
 git cherry-pick
+```
+
+
+
+6.git diff 生成diff文件
+
+```
+// 查看更新文件
+git status
+
+// 将修改文件生成 diff 文件
+git diff --full-index > 201812141040.diff
+
+// 将指定的修改文件生成 diff 文件
+git diff --full-index [你的文件名 ...] > 201812141040.diff
+```
+
+
+
+7.应用diff文件
+
+```
+# 检查diff是否能正常打入
+git apply --check {path/to/xxx.diff}
+
+# 打入patch/diff:
+git apply {path/to/xxx.diff}
+
+# 或者
+git am {path/to/xxx.diff}
 ```
 
 

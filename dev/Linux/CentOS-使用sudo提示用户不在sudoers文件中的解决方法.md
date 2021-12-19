@@ -1,5 +1,11 @@
 # CentOS-使用sudo提示用户不在sudoers文件中的解决方法
 
+
+
+**visudo命令编辑**
+
+
+
 1. 切换到root用户
 
    [linux@localhost ~]$ su root
@@ -10,7 +16,7 @@
 
 2. 查看/etc/sudoers文件权限，如果只读权限，修改为可写权限
 
-    [root@localhost ~]# ll /etc/sudoers
+   [root@localhost ~]# ll /etc/sudoers
 
    -r--r-----. 1  root root 4030 12月  10 09:55 /etc/sudoers
 
