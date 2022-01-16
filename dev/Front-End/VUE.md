@@ -1,13 +1,13 @@
-### VUE
+# Vue.js
+
+中文官网：https://cn.vuejs.org/
+Vue.js中文教程：https://learning.dcloud.io/
 
 [awesome-vue](https://github.com/vuejs/awesome-vue)
 
 Webpack 入门教程：http://www.runoob.com/w3cnote/webpack-tutorial.html
 
-官方文档：http://vuejs.org/v2/guide/syntax.html
 
-中文文档: https://cn.vuejs.org/v2/guide/syntax.html
-Vue.js中文教程：https://learning.dcloud.io/
 
 入门视屏教程 [网易云课堂](https://study.163.com/course/courseMain.htm?courseId=1004711010)
 Vue.js 教程-菜鸟教程https://www.runoob.com/vue2/vue-tutorial.html
