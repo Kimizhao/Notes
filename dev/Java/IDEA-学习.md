@@ -1,5 +1,11 @@
 ### IDEA-学习
 
+[Intellij IDEA 神级插件！效率提升 10 倍！](https://mp.weixin.qq.com/s/Dcy2azGpGW1s0fadyd8bsA)
+
+
+
+
+
 1. 通过官方提供的ideaLearningProject学习，这个项目从欢迎页，通过学习IntelliJ IDEA进入交互式课程。
 
 

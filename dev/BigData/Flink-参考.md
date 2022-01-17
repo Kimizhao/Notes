@@ -101,3 +101,9 @@ taskmanager.numberOfTaskSlots
 docker-flink
 
 https://github.com/big-data-europe/docker-flink
+
+
+
+FlinK运行一段时间后任务任务自己挂掉的问题排查
+
+https://blog.csdn.net/u012164361/article/details/95315521

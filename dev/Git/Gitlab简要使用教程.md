@@ -80,7 +80,7 @@ Register 注册，一般使用企业内部邮件注册。
 
 demo创建成功。
 
-![3-new-project-demo-1](J:\700-repo\github\Kimizhao\Notes\images\gitlab\3-new-project-demo-1.png)
+![3-new-project-demo-1](..\..\images\gitlab\3-new-project-demo-1.png)
 
 
 

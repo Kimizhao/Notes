@@ -102,6 +102,46 @@ Runner registered successfully. Feel free to start it, but if it's running alrea
 
 
 
+默认运行
+
+```
+/usr/bin/gitlab-runner run --working-directory /home/gitlab-runner --config /etc/gitlab-runner/config.toml --service gitlab-runner --user gitlab-runner
+```
+
+## 升级
+
+### 1. 停止
+
+```
+sudo gitlab-runner stop
+```
+
+
+
+### 2.下载
+
+```
+sudo curl -L --output /usr/local/bin/gitlab-runner "https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64"
+```
+
+
+
+### 3.赋予执行权限
+
+```
+sudo chmod +x /usr/local/bin/gitlab-runner
+```
+
+
+
+### 4.启动
+
+```
+sudo gitlab-runner start
+```
+
+
+
 注：需要运行docker，假如用户组
 
 ```
