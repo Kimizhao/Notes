@@ -57,3 +57,11 @@ http://doc.jetlinks.cn/
 [物联网 IoT 初学者教程](https://github.com/microsoft/IoT-For-Beginners)
 
 微软发布的英文教程，详细介绍什么是物联网，以及物联网的应用。(issue-173)
+
+
+
+1. [华为云HCIA-IoT学习课程](https://education.huaweicloud.com/programs/ded937c3-d2b8-44bd-a66b-1c25b80ba7ff/about)、[阿里云ACA-IoT课程](https://edu.aliyun.com/course/explore/aliyun_iot)
+2. [jetlinks国内物联网基础平台](http://doc.jetlinks.cn/)
+
+3. [物联网开源项目合集](https://github.com/phodal/awesome-iot)
+

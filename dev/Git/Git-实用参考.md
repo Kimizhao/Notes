@@ -122,6 +122,19 @@ git am {path/to/xxx.diff}
 
 
 
+8.配置
+
+```
+# 查看配置
+git config --list
+
+# 配置用户及邮箱
+git config user.name 'new_author_name'
+git config user.email 'new_user_email'
+```
+
+
+
 #### [.gitignore 模板](https://github.com/github/gitignore)
 
 托管在github上的各种工程代码的`.gitignore`模板，很实用

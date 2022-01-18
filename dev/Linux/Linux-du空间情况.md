@@ -8,7 +8,7 @@ estimate file space usage
 
 查看当前目录下文件夹空间
 
-```shell
+```
 du -h --max-depth=1
 ```
 

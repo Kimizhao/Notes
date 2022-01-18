@@ -18,3 +18,13 @@ https://docs.microsoft.com/zh-cn/windows/terminal/
 
 2.开启新的窗口(Ctrl+Shift+T)
 
+
+
+
+
+
+
+## 问题
+
+[PowerShell | git log 中文乱码问题解决](https://blog.csdn.net/FollowGodSteps/article/details/96271359)
+

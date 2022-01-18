@@ -54,3 +54,10 @@
 
 
 
+
+
+
+
+注意：
+
+同时安装了JRebel mybatisPlus extension会报错，IDEA:2020.3.3，JRebel 2022.1.0，mybatis-plus 3.4.0

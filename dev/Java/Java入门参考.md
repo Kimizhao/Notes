@@ -85,3 +85,13 @@ resource/logback.xml
 <root level="error"><appender-ref ref="STDOUT" /></root>
 
 </configuration>
+
+
+
+
+
+## 示例
+
+### websocket
+
+[WebSocket实践——Java实现WebSocket的两种方式](https://www.cnblogs.com/onlymate/p/9521327.html)

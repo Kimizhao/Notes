@@ -46,3 +46,7 @@ https://www.cnblogs.com/gaochundong/p/csharp_tcp_service_models.html#saea
 netty demo
 
 https://github.com/fuzhengwei/itstack-demo-netty
+
+
+
+[Netty 中的粘包和拆包](https://www.cnblogs.com/rickiyang/p/12904552.html)

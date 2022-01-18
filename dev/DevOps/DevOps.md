@@ -14,3 +14,12 @@ W3Cschool-[Jenkins中文文档](https://www.w3cschool.cn/jenkins/)
 
 阮一峰：[持续集成是什么？](https://www.ruanyifeng.com/blog/2015/09/continuous-integration.html)
 
+
+
+### 一些官方提供持技术文档
+
+- Websoft9 技术支持
+
+https://support.websoft9.com/zh/
+
+https://github.com/Websoft9
