@@ -20,6 +20,23 @@
 
 
 
+### 常用命令
+
+```
+# 启动
+gitlab-ctl start
+
+# 配置
+gitlab-ctl reconfigure
+
+# 停止
+gitlab-ctl stop
+#查看日志
+gitlab-ctl tail
+```
+
+
+
 ## 遇到问题
 
 1.gitlab-runner运行jobs时提示找不到npm
@@ -153,6 +170,26 @@ newgrp docker
 
 
 
+# 关闭gitlab中的prometheus
+
+编辑/etc/gitlab/gitlab.rb
+添加或查找并取消注释以下行
+prometheus_monitoring[‘enable’]，确保将其设置为 ：false
+
+```
+vim /etc/gitlab/gitlab.rb
+```
+
+prometheus_monitoring['enable'] = false
+
+保存并重新配置GitLab
+
+```
+gitlab-ctl reconfigure
+```
+
+
+
 ## 参考
 
 [gitlab ci 部署vue项目](https://www.jianshu.com/p/3c0cbb6c2936)
@@ -164,4 +201,40 @@ newgrp docker
 [Gitlab CI 使用高级技巧](https://www.jianshu.com/p/3c0cbb6c2936)
 
 
+
+
+
+## 错误
+
+### 1.Starting Prometheus
+
+fd和vm超出
+
+临时关闭prometheus
+
+```
+2022-01-18_06:17:30.18220 level=info ts=2022-01-18T06:17:30.181Z caller=main.go:329 msg="Starting Prometheus" version="(version=2.12.0, branch=master, revision=)"
+2022-01-18_06:17:30.18225 level=info ts=2022-01-18T06:17:30.182Z caller=main.go:330 build_context="(go=go1.12.13, user=GitLab-Omnibus, date=)"
+2022-01-18_06:17:30.18225 level=info ts=2022-01-18T06:17:30.182Z caller=main.go:331 host_details="(Linux 3.10.0-1062.el7.x86_64 #1 SMP Wed Aug 7 18:08:02 UTC 2019 x86_64 registry.aidipper.com (none))"
+2022-01-18_06:17:30.18240 level=info ts=2022-01-18T06:17:30.182Z caller=main.go:332 fd_limits="(soft=50000, hard=50000)"
+2022-01-18_06:17:30.18340 level=info ts=2022-01-18T06:17:30.182Z caller=main.go:333 vm_limits="(soft=unlimited, hard=unlimited)"
+2022-01-18_06:17:30.18692 panic: runtime error: slice bounds out of range
+2022-01-18_06:17:30.18694
+2022-01-18_06:17:30.18694 goroutine 1 [running]:
+2022-01-18_06:17:30.18695 github.com/prometheus/prometheus/promql.parseBrokenJson(0xc0006f3000, 0x4e21, 0x4e21, 0x2a74ce0, 0xc000649bf0, 0x0, 0x0, 0xc000730330)
+2022-01-18_06:17:30.18695       /var/cache/omnibus/src/prometheus/src/github.com/prometheus/prometheus/promql/query_logger.go:45 +0x131
+2022-01-18_06:17:30.18695 github.com/prometheus/prometheus/promql.logUnfinishedQueries(0xc000730330, 0x2e, 0x4e21, 0x2a74ce0, 0xc000649bf0)
+2022-01-18_06:17:30.18697       /var/cache/omnibus/src/prometheus/src/github.com/prometheus/prometheus/promql/query_logger.go:70 +0x552
+2022-01-18_06:17:30.18700 github.com/prometheus/prometheus/promql.NewActiveQueryTracker(0x7fffd55afe8d, 0x1f, 0x14, 0x2a74ce0, 0xc000649bf0, 0x2a74ce0)
+2022-01-18_06:17:30.18704       /var/cache/omnibus/src/prometheus/src/github.com/prometheus/prometheus/promql/query_logger.go:108 +0x131
+2022-01-18_06:17:30.18704 main.main()
+2022-01-18_06:17:30.18705       /var/cache/omnibus/src/prometheus/src/github.com/prometheus/prometheus/cmd/prometheus/main.go:361 +0x52bd
+
+==> /var/log/gitlab/nginx/gitlab_access.log <==
+192.168.10.74 - - [18/Jan/2022:14:17:30 +0800] "POST /api/v4/jobs/request HTTP/1.1" 204 0 "" "gitlab-runner 14.1.0 (14-1-stable; go1.13.8; linux/amd64)"
+192.168.10.69 - - [18/Jan/2022:14:17:30 +0800] "POST /api/v4/jobs/request HTTP/1.1" 204 0 "" "gitlab-runner 14.1.0 (14-1-stable; go1.13.8; linux/amd64)"
+192.168.10.68 - - [18/Jan/2022:14:17:30 +0800] "POST /api/v4/jobs/request HTTP/1.1" 204 0 "" "gitlab-runner 14.1.0 (14-1-stable; go1.13.8; linux/amd64)"
+
+==> /var/log/gitlab/prometheus/current <==
+```
 

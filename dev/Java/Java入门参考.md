@@ -1,5 +1,12 @@
 ## Java入门参考
 
+Java面试资料
+
+链接：https://pan.baidu.com/s/1Se5rDo95zHiC3qpOSvFnqw
+提取码：zcjo
+
+
+
 [数组拷贝](http://blog.csdn.net/lazy_p/article/details/7365324/)
 
 [Java中的instanceof关键字](https://www.cnblogs.com/rodney/archive/2005/08/18/instanceof.html)
